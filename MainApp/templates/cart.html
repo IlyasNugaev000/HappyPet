@@ -1,0 +1,116 @@
+{% load static %}
+{% load mathfilters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% block styles %}
+    <style>
+        body {
+            background: #FBF6ED;
+            }
+    </style>
+    {% endblock %}
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'MainApp/css/main.css' %}">
+	
+    {% block extrastyle %}
+    {% endblock %}
+</head>
+<body>
+    <header id="header" class="header">
+        <div class="container">
+            <div class="nav">
+                <img src="{% static 'MainApp/images/logo.svg' %}" class="logo" alt="Happy Pet">
+                <ul class="menu">
+                    <li>
+                        <a href="{% url 'base' %}">Главная</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'category' 'all'  %}">Друзья</a>
+                    </li>
+					<li>
+                        <a href="{% url 'products' 'all'  %}">Зоотовары</a>
+                    </li>
+                    <li>
+                        <a href="#">О сервисе</a>
+                    </li>
+                </ul>
+                <a href="{% url 'cart' %}"> <img src="{% static 'MainApp/images/cart.svg' %}" class="cart_logo" alt="cart"> </a>
+				{% if request.user.is_authenticated%}
+					Привет, {{ request.user.username }} | 
+					<a href="{% url 'exit' %}" class="exit">Выход</a>
+				{% else %}
+					<a href="{% url 'login' %}" class="login">Вход|</a>
+					<a href="{% url 'register' %}" class="register">Регистрация</a>
+				{% endif %}
+            </div>
+            {% block content %}
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Наименование</th>
+      <th scope="col">Изображение</th>
+      <th scope="col">Цена</th>
+      <th scope="col">Кол-во</th>
+        <th scope="col">Общая цена</th>
+      <th scope="col">Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for item in animals %}
+        <tr>
+          <th scope="row">{{ item.nickname|add:" ("|add:item.animalsType.typeName|add:")" }}</th>
+          <td class="w-25"><img src="{{ item.main_image.url }}" class="img-fluid"></td>
+          <td class="price">{{ item.price }} руб.</td>
+		  <td colspan="2"></td>
+          <td>
+            <a href="{% url 'deleteAnimal' item.id %}"><button class="btn btn-danger cartButton">Удалить из корзины</button></a>
+          </td>
+        </tr>
+    {% endfor %}
+  
+  
+    {% for item in products %}
+        <tr>
+          <th scope="row">{{ item.petProduct.name }}</th>
+          <td class="w-25"><img src="{{ item.petProduct.main_image.url }}" class="img-fluid"></td>
+          <td class="price">{{ item.petProduct.price }} руб.</td>
+		  <td>
+			<input type="number" id={{ item.petProduct.id }} value={{ item.productCount }} num="{{ item.petProduct.name }}" min=1 max={{ item.petProduct.count }}>
+			<div>Доступно {{ item.petProduct.count }}</div>
+		  </td>
+          <td>{{ item.petProduct.price|mul:item.productCount }} руб.</td>
+          <td>
+            <a href="{% url 'deleteProduct' item.petProduct.id %}"><button class="btn btn-danger cartButton">Удалить из корзины</button></a>
+          </td>
+        </tr>
+    {% endfor %}    
+        <tr>
+          <td colspan="3"></td>
+          <td>Итого:</td>
+          <td><strong>{{ final_price }} руб.</strong></td>
+          <td><a href={% url 'purchase' %}><button class="btn btn-primary cartButton">Перейти к оформлению</button></a></td>
+        </tr>
+  </tbody>
+</table>
+
+
+            {% endblock %}
+        </div>
+    </header>
+    
+
+</body>
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{% static 'MainApp/js/slick.min.js' %}"></script>
+    <script src="{% static 'MainApp/js/script.js' %}"></script>
+{% endblock %}
+</html>

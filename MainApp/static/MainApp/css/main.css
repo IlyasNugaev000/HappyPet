@@ -1,0 +1,293 @@
+@font-face {
+    font-family: "Montserrat"; 
+    src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+    font-style: normal;  
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Montserrat"; 
+    src: url('../fonts/Montserrat-Medium.ttf') format('truetype'); 
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Montserrat"; 
+    src: url('../fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Montserrat"; 
+    src: url('../fonts/Montserrat-ExtraBold.ttf') format('truetype'); 
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Montserrat"; 
+    src: url('../fonts/Montserrat-Black.ttf') format('truetype'); 
+    font-weight: 900;
+}
+
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat';
+    font-style: normal;
+    color: #000;
+    font-size: 15px;
+	overflow-x: hidden;
+}
+ul, li {
+    display: block;
+    margin: 0;
+}
+h2, h3 {
+    margin: 0;
+    font-weight: 900;
+}
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 20px;
+}
+.container {
+    width: 1170px;
+    margin: 0 auto;
+}
+header {
+    width: 1519px;
+    height: 900px;
+}
+header a{
+    color: #000;
+}
+section {
+    width: 1519px;
+}
+.menu {
+    display: flex;
+}
+
+.menu li a {
+    text-decoration: none;
+}
+.menu li {
+    margin-right: 48px;
+}
+.nav {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    height: 53px;
+}
+.nav a {
+    text-decoration: none;
+}
+.phone_number {
+    font-weight: 900;
+}
+.logo {
+    margin-right: 117px;
+}
+.greeting h1 {
+    width: 442px;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 49px;
+    margin: 0;
+}
+.phone_logo {
+    align-items: center;
+    margin-left: 30px;
+    margin-right: 12px;
+}
+.cart_logo {
+    margin-right: 12px;
+    margin-left: auto;
+}
+
+.greeting {
+    margin-top: 173px;
+}
+.greeting_text {
+    width: 413px;
+    height: 102px;
+    font-size: 19px;
+    line-height: 27px;
+    margin-top: 24px;
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    width: 265px;
+    height: 67px;
+    font-size: 17px;
+    text-decoration: none;
+    margin-top: 15px;
+    border-radius: 110px;
+}
+.greeting a{
+    background: linear-gradient(102.4deg, #F52557 36.84%, #ED1C4E 74.32%);
+    color: #fff;
+    box-shadow: 0px 7px 35px rgba(242, 34, 84, 0.42);
+}
+.animal_type {
+    position: relative;
+    width: 300px;
+}
+.type_photo {
+    position: absolute;
+    left: 100px;
+    top: 85px;
+}
+.type_and_arrow {
+    position: absolute;
+    left: 70px;
+    top: 50px;
+    display: flex;
+    align-items: center;
+}
+.slider {
+    position: relative;
+    margin-top: -175px;
+    padding: 0 60px;
+    margin-left: -65px;
+    width: 600px;
+
+}
+.slick-prev {
+    left: 0;
+    background: url('../images/left.svg') 0 0 / 100% no-repeat;
+}
+.slick-next {
+    right: 0;
+    background: url('../images/right.svg') 0 0 / 100% no-repeat;
+}
+.slick-track {
+    display: flex; 
+}
+
+.slick-list {
+    overflow: hidden;
+}
+.slider .slick-arrow {
+    position: absolute;
+    z-index: 10;
+    border: 0;
+    outline: none;
+    top: 50%;
+    font-size: 0;
+    width: 35px;
+    height: 35px;
+    margin-top: -35px;
+}
+.slider__item {
+    margin-right: 30px;
+}
+.slider .slick-prev {
+    margin-left: 60px;
+}
+.slider .slick-next {
+    margin-right: 60px;
+}
+.href {
+    font-weight: 700;
+    color: #F07530;
+    text-decoration: none;
+}
+.arrow {
+    margin-left: 10px;
+}
+.slider .slick-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slider ul {
+    position: relative;
+    margin-top: -50px;
+}
+.slick-dots li button {
+    font-size: 0;
+    margin: 10px;
+    padding: 0;
+    border: 0;
+    outline: none;
+    width: 10px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.13);
+    cursor: pointer;
+    border-radius: 50%;
+}
+.slider .slick-slide {
+    margin: 10px;
+}
+.slider .slick-list {
+    margin: 0 20px;
+}
+.slider .slick-track {
+    margin: 0 -20px;
+}
+.slick-dots .slick-active button {
+    background: rgba(0, 0, 0, 0.69);
+}
+section .container h2 {
+    margin: 93px 0 0 0;
+}
+.why_choose {
+    display: flex;
+    margin: 72px 0 0 0;
+}
+.why_choose li {
+    display: flex;
+    align-items: center;
+}
+.why_choose div {
+    padding: 5px 0 0 0;
+    font-weight: 500;
+}
+.advantages {
+    margin: 0 35px;
+}
+table {
+	margin-top: 100px;
+}
+.cartButton{
+	width: 160px
+	height: 40px;
+}
+
+.footer {
+    
+    background: #000000;
+    width: 1519px;
+    height: 149px;
+    margin:275px 0 0 0;
+}
+.telefon {
+    margin: 0 10px 0 1264px;
+}
+.pho{
+    margin: 0 0 0 1180px;
+}
+.text_us {
+    width: 443px;
+    height: 321px;
+    line-height: 24px;
+    font-size: 16px;
+    position: relative;
+}
+.people {
+    margin-left: auto;
+    position: absolute;
+    bottom:-425px;
+    left:250px;
+}
+.about_us {
+    margin: 200px 0 0 0;
+}

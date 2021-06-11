@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <style>
+        body {
+            background: #FBF6ED;
+            }
+    </style>
+{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'MainApp/css/advanced.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="title_and_adding">
+        <h2 class="animal_title">{{ current_product.name }}</h2>
+		{% if isAvailable %}
+        <a href="{% url 'cartAdding' 'product' current_product.slug %}" class="btn add_to_cart">Добавить</a>
+		{% else %}
+		<a href="{% url 'cartAdding' 'product' current_product.slug %}" class="btn add_to_cart green">Добавлено</a>
+		{% endif %}
+    </div>
+    <div class="photo_slider">
+            <div class="main_photo photos">
+                <img src="{{ current_product.main_image.url }}" alt="">
+            </div>
+    </div>
+<div class="wrapper">
+    <div class="half">
+		<div class="tab">
+		  <input id="tab-one" type="checkbox" name="tabs">
+		  <label for="tab-one">Описание товара</label>
+		  <div class="tab-content">
+			<ul class="description">
+				<li>Название: {{ current_product.name }}</li>
+				<li>Дополнительное описание: {{ current_product.advDescriptions }}</li>
+			</ul>
+		  </div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block second_content %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{% static 'MainApp/js/slick.min.js' %}"></script>
+    <script src="{% static 'MainApp/js/animal_info.js' %}"></script>
+{% endblock %}

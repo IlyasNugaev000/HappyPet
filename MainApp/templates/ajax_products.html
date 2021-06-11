@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <style>
+        body {
+            background: #FBF6ED;
+            }
+    </style>
+{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'MainApp/css/advanced.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+<h2 class="catalog">Каталог зоотоваров</h2>
+<div class="catalog_type">
+    {% if current_type == "all" %}
+        <a href="{% url 'products' 'all' %}" class="btn current_type">Все</a>
+    {% else %}
+        <a href="{% url 'products' 'all' %}" class="btn">Все</a>
+    {% endif %}
+    {% for product_type in product_types %}
+        {% if current_type == product_type %}
+            <a href="{{ product_type.get_absolute_url }}" class="btn current_type">{{ product_type.typeName }}</a>
+        {% else %}
+            <a href="{{ product_type.get_absolute_url }}" class="btn">{{ product_type.typeName }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="animals_list">
+    {% for catalog_element in catalog_elements %}
+        <div class="catalog_elem">
+            <img src="{% static 'MainApp/images/CatalogRectangle.png' %}" alt="" class="sliding catalog_elem_rectangle">
+            <a href="{{ catalog_element.get_absolute_url }}">
+                <img src="{{ catalog_element.main_image.url }}" alt="" class="sliding catalog_elem_img">
+                <h4 class="breed">{{ catalog_element.breed }}</h4>
+            </a>
+            <p class="short_descriptions">{{ catalog_element.shortDescriptions }}</p>
+            <div class="price_and_footprint">
+                <p class="price">{{ catalog_element.price|floatformat }} р.</p>
+                <img src="{% static 'MainApp/images/footprint.svg' %}" alt="" class="catalog_elem_footprint">
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block second_content %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

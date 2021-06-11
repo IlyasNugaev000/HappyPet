@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block styles %}
+    <style>
+        body {
+            background: #FBF6ED;
+            }
+    </style>
+{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'MainApp/css/advanced.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="title_and_adding">
+        <h2 class="animal_title">{{ current_animal.nickname }}</h2>
+		{% if isAvailable %}
+        <a href="{% url 'cartAdding' 'animal' current_animal.slug %}" class="btn add_to_cart">Добавить</a>
+		{% else %}
+		<a href="{% url 'cartAdding' 'animal' current_animal.slug %}" class="btn add_to_cart green">Добавлено</a>
+		{% endif %}
+    </div>
+    <div class="photo_slider">
+            <div class="main_photo photos">
+                <img src="{{ current_animal.main_image.url }}" alt="">
+            </div>
+        {% for photo in photos %}
+            <div class="photos">
+                <img src="{{ photo.image.url }}" alt="">
+            </div>
+        {% endfor %}
+    </div>
+<div class="wrapper">
+    <div class="half">
+    <div class="tab">
+      <input id="tab-one" type="checkbox" name="tabs">
+      <label for="tab-one">Данные о животном</label>
+      <div class="tab-content">
+        <ul class="description">
+            <li>Кличка: {{ current_animal.nickname }}</li>
+            <li>Пол: {{ current_animal.gender }}</li>
+            <li>Возраст: {{ current_animal.age }}</li>
+            <li>Шерстяной покров: {{ current_animal.woolCover }}</li>
+            <li>Цвет шерсти: {{ current_animal.woolColor }}</li>
+            <li>Порода: {{ current_animal.breed }}</li>
+            <li>Цвет глаз: {{ current_animal.eyesColor }}</li>
+            <li>Приученность к туалету: {{ toilet }}</li>
+            <li>Телосложение: {{ current_animal.body }}</li>
+            <li>Дополнительное описание: {{ current_animal.advDescriptions }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab">
+      <input id="tab-two" type="checkbox" name="tabs">
+      <label for="tab-two">Данные о ветлечебнице</label>
+      <div class="tab-content">
+        <ul class="description">
+            <li>Название ветлечебницы: {{ vetclinic_info.clinicNumber }}</li>
+            <li>Адрес: {{ vetclinic_info.adress }}</li>
+            <li>Телефон: {{ vetclinic_info.phoneNumber }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab">
+      <input id="tab-three" type="checkbox" name="tabs">
+      <label for="tab-three">Данные о ветеринаре</label>
+      <div class="tab-content">
+        <ul class="description">
+            <li>ФИО: {{ veter_info.lastName }} {{ veter_info.name }} {{ veter_info.midName }}</li>
+            <li>Дата введения в учёт {{ veter_info.dateOfReg }}</li>
+            <li>Дата последнего посещения {{ veter_info.lastVisit }}</li>
+        </ul>
+      </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block second_content %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{% static 'MainApp/js/slick.min.js' %}"></script>
+    <script src="{% static 'MainApp/js/animal_info.js' %}"></script>
+{% endblock %}
